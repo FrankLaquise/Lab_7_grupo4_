@@ -2,17 +2,19 @@ package controller;
 
 import com.example.lab_7_grupo4_.entity.Usuario;
 import com.example.lab_7_grupo4_.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+@Controller
 
-@RestController
-@CrossOrigin
-@RequestMapping("/user")
 public class UserController {
+    @Autowired
     UserRepository userRepository;
-    @GetMapping("/listar")
+    @ResponseBody
+    @GetMapping(value = "/listar")
     public List<Usuario> listaUsuarios() {
         return userRepository.findAll();
 

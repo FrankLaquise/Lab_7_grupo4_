@@ -1,9 +1,7 @@
 package com.example.lab_7_grupo4_.entity;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
-
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 
