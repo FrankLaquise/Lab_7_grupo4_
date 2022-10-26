@@ -1,7 +1,9 @@
 package com.example.lab_7_grupo4_.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 import java.time.Instant;
 
 @Entity
