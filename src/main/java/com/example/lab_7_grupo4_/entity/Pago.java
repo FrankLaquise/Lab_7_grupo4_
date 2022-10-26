@@ -17,7 +17,7 @@ public class Pago {
     private Double monto;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne( optional = false)
     @JoinColumn(name = "usuarios_id", nullable = false)
     private Usuario usuarios;
 
@@ -29,7 +29,7 @@ public class Pago {
     private Instant fecha;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne( optional = false)
     @JoinColumn(name = "creditos_id", nullable = false)
     private Credito creditos;
 

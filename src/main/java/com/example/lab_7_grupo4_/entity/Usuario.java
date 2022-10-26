@@ -38,7 +38,7 @@ public class Usuario {
     private String estadoLogico;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne( optional = false)
     @JoinColumn(name = "rol_id", nullable = false)
     private Rol rol;
 

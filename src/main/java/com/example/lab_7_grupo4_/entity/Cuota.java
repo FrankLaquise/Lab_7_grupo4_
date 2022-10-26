@@ -18,7 +18,7 @@ public class Cuota {
     private Double monto;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne( optional = false)
     @JoinColumn(name = "creditos_id", nullable = false)
     private Credito creditos;
 
