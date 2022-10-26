@@ -1,4 +1,4 @@
-package com.example.lab_7_grupo4_;
+package com.example.lab_7_grupo4_.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

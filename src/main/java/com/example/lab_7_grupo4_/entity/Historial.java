@@ -1,22 +1,20 @@
-package com.example.lab_7_grupo4_;
+package com.example.lab_7_grupo4_.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
 
 @Entity
-@Table(name = "utilidades")
-public class Utilidades {
+@Table(name = "historial")
+public class Historial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "monto")
-    private Double monto;
-
-    @Column(name = "fecha")
-    private Instant fecha;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "creditos_id", nullable = false)
+    private Credito creditos;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -31,20 +29,12 @@ public class Utilidades {
         this.id = id;
     }
 
-    public Double getMonto() {
-        return monto;
+    public Credito getCreditos() {
+        return creditos;
     }
 
-    public void setMonto(Double monto) {
-        this.monto = monto;
-    }
-
-    public Instant getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Instant fecha) {
-        this.fecha = fecha;
+    public void setCreditos(Credito creditos) {
+        this.creditos = creditos;
     }
 
     public Usuario getUsuarios() {

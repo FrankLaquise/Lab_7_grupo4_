@@ -1,26 +1,27 @@
-package com.example.lab_7_grupo4_;
+package com.example.lab_7_grupo4_.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
 
 @Entity
-@Table(name = "cuotas")
-public class Cuota {
+@Table(name = "utilidades")
+public class Utilidades {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "numero_cuota")
-    private Integer numeroCuota;
-
     @Column(name = "monto")
     private Double monto;
 
+    @Column(name = "fecha")
+    private Instant fecha;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "creditos_id", nullable = false)
-    private Credito creditos;
+    @JoinColumn(name = "usuarios_id", nullable = false)
+    private Usuario usuarios;
 
     public Integer getId() {
         return id;
@@ -28,14 +29,6 @@ public class Cuota {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getNumeroCuota() {
-        return numeroCuota;
-    }
-
-    public void setNumeroCuota(Integer numeroCuota) {
-        this.numeroCuota = numeroCuota;
     }
 
     public Double getMonto() {
@@ -46,12 +39,20 @@ public class Cuota {
         this.monto = monto;
     }
 
-    public Credito getCreditos() {
-        return creditos;
+    public Instant getFecha() {
+        return fecha;
     }
 
-    public void setCreditos(Credito creditos) {
-        this.creditos = creditos;
+    public void setFecha(Instant fecha) {
+        this.fecha = fecha;
+    }
+
+    public Usuario getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Usuario usuarios) {
+        this.usuarios = usuarios;
     }
 
 }

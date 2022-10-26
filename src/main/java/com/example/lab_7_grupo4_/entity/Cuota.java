@@ -1,24 +1,21 @@
-package com.example.lab_7_grupo4_;
+package com.example.lab_7_grupo4_.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.Instant;
 
 @Entity
-@Table(name = "desembolsos")
-public class Desembolso {
+@Table(name = "cuotas")
+public class Cuota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 45)
-    @Column(name = "monto_desembolso", length = 45)
-    private String montoDesembolso;
+    @Column(name = "numero_cuota")
+    private Integer numeroCuota;
 
-    @Column(name = "fecha")
-    private Instant fecha;
+    @Column(name = "monto")
+    private Double monto;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -33,20 +30,20 @@ public class Desembolso {
         this.id = id;
     }
 
-    public String getMontoDesembolso() {
-        return montoDesembolso;
+    public Integer getNumeroCuota() {
+        return numeroCuota;
     }
 
-    public void setMontoDesembolso(String montoDesembolso) {
-        this.montoDesembolso = montoDesembolso;
+    public void setNumeroCuota(Integer numeroCuota) {
+        this.numeroCuota = numeroCuota;
     }
 
-    public Instant getFecha() {
-        return fecha;
+    public Double getMonto() {
+        return monto;
     }
 
-    public void setFecha(Instant fecha) {
-        this.fecha = fecha;
+    public void setMonto(Double monto) {
+        this.monto = monto;
     }
 
     public Credito getCreditos() {
