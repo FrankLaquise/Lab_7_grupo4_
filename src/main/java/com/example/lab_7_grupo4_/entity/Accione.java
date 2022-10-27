@@ -1,5 +1,8 @@
 package com.example.lab_7_grupo4_.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -7,6 +10,8 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "acciones")
+@Getter
+@Setter
 public class Accione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,36 +29,5 @@ public class Accione {
     @JoinColumn(name = "usuarios_id", nullable = false)
     private Usuario usuarios;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(Double monto) {
-        this.monto = monto;
-    }
-
-    public Instant getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Instant fecha) {
-        this.fecha = fecha;
-    }
-
-    public Usuario getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(Usuario usuarios) {
-        this.usuarios = usuarios;
-    }
 
 }
