@@ -1,11 +1,16 @@
 package com.example.lab_7_grupo4_.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "usuarios")
 public class Usuario {
     @Id
@@ -40,81 +45,13 @@ public class Usuario {
     @NotNull
     @ManyToOne( optional = false)
     @JoinColumn(name = "rol_id", nullable = false)
-    private Rol rol;
+    private Rol rol_id;
 
     @Column(name = "fecha_registro")
-    private Instant fechaRegistro;
+    private Instant fecha_registro;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEstadoLogico() {
-        return estadoLogico;
-    }
-
-    public void setEstadoLogico(String estadoLogico) {
-        this.estadoLogico = estadoLogico;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
-    public Instant getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Instant fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
 
 }
