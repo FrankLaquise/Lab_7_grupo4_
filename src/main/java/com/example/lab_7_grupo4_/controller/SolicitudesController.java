@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class SolicitudesController {
@@ -38,4 +36,69 @@ public class SolicitudesController {
         return ResponseEntity.status(HttpStatus.CREATED).body(hashMap);
     }
 
+    @PutMapping(value = "/solicitudes/aprobarSolicitud")
+    public ResponseEntity<HashMap<String,String>> aprobarSolicitud(@RequestBody Solicitudes solicitud,
+                                                                                 @RequestParam("idSolicitud") Integer idStr){
+        HashMap<String,String> hashMap = new HashMap<>();
+
+        Optional<Solicitudes> optsolic = solicitudesRepository.findById(solicitud.getId());
+        if(optsolic.isPresent()){
+            Solicitudes solicitudd = optsolic.get();
+            if(solicitudd.getSolicitudEstado() == "pendiente") {
+                solicitudd.setSolicitudEstado("aprobada");
+                solicitudesRepository.AprobarSolicitud(idStr);
+                hashMap.put("id solicitud",String.valueOf(solicitudd.getId()));
+            }else{
+                hashMap.put("solicitud ya atendida",String.valueOf(solicitudd.getId()));
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(hashMap);
+        }else{
+            hashMap.put("status","error");
+            hashMap.put("msg","La solicitud no existe");
+            return ResponseEntity.ok(hashMap);
+        }
+    }
+
+    @PutMapping(value = "/solicitudes/denegarSolicitud")
+    public ResponseEntity<HashMap<String,String>> denegarSolicitud(@RequestBody Solicitudes solicitud,
+                                                                   @RequestParam("idSolicitud") Integer idStr){
+        HashMap<String,String> hashMap = new HashMap<>();
+
+        Optional<Solicitudes> optsolic = solicitudesRepository.findById(solicitud.getId());
+        if(optsolic.isPresent()){
+            Solicitudes solicitudd = optsolic.get();
+            if(solicitudd.getSolicitudEstado() == "pendiente") {
+                solicitudd.setSolicitudEstado("denegada");
+                solicitudesRepository.DenegarSolicitud(idStr);
+                hashMap.put("id solicitud",String.valueOf(solicitudd.getId()));
+            }else{
+                hashMap.put("solicitud ya atendida",String.valueOf(solicitudd.getId()));
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(hashMap);
+        }else{
+            hashMap.put("status","error");
+            hashMap.put("msg","La solicitud no existe");
+            return ResponseEntity.ok(hashMap);
+        }
+    }
+
+    @PutMapping(value = "/solicitudes/eliminar")
+    public ResponseEntity<HashMap<String,String>> eliminarSolicitud(@RequestBody Solicitudes solicitud,
+                                                                   @RequestParam("idSolicitud") Integer idStr){
+        HashMap<String,String> hashMap = new HashMap<>();
+
+        Optional<Solicitudes> optsolic = solicitudesRepository.findById(solicitud.getId());
+        if(optsolic.isPresent()){
+            Solicitudes solicitudd = optsolic.get();
+            if(solicitudd.getSolicitudEstado() == "denegada") {
+                solicitudesRepository.EliminarSolicitud(idStr);
+                hashMap.put("id solicitud borrada",String.valueOf(solicitudd.getId()));
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(hashMap);
+        }else{
+            hashMap.put("status","error");
+            hashMap.put("msg","La solicitud no existe");
+            return ResponseEntity.ok(hashMap);
+        }
+    }
 }
