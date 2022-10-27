@@ -22,6 +22,11 @@ public class SolicitudesController {
     SolicitudesRepository solicitudesRepository;
 
     @ResponseBody
+    @GetMapping(value = "/solicitudes/listar")
+    public List<Solicitudes> listaUsuarios() {
+        return solicitudesRepository.findAll();
+    }
+    @ResponseBody
     @PostMapping(value = "/solicitudes/registrar")
     public ResponseEntity<HashMap<String,String>> crearSolicitud(@RequestBody Solicitudes solicitud){
         HashMap<String,String> hashMap = new HashMap<>();
