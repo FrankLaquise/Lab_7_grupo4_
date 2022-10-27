@@ -17,8 +17,8 @@ public class AccionController {
     @Autowired
     AccioneRepository accioneRepository;
 
-    @PostMapping("")
-    public ResponseEntity<HashMap<String,String>> crearProducto(@RequestBody Accione accione){
+    @PostMapping(value ="/accione")
+    public ResponseEntity<HashMap<String,String>> crearAccione(@RequestBody Accione accione){
         HashMap<String,String> hashMap = new HashMap<>();
 
         AccioneRepository.save(accione);
